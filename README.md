@@ -7,7 +7,6 @@ This is a simple and elegant **TikTok Video Downloader** that allows users to **
 
 ## ✨ Features
 - ✅ **Fetch and Preview Video Before Downloading**
-- ✅ **No Auto-Download** (User clicks the button)
 - ✅ **Beautiful UI with SweetAlert Loading Animations**
 - ✅ **Responsive & Mobile-Friendly Design**
 - ✅ **No Watermark Support (if API allows)**
