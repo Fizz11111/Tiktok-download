@@ -27,7 +27,7 @@ Check out the live version: [Click Here](https://your-demo-link.com)
 Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/tiktok-downloader.git
+git clone https://github.com/Fizz11111/Tiktok-download.git
 ```
 
 Then, open `index.html` in your browser.
@@ -48,7 +48,7 @@ Then, open `index.html` in your browser.
 Want to improve this project? Feel free to **fork and submit a pull request!**
 
 ## ⭐ Credits
-This project is maintained by **[Your Name](https://github.com/your-username)** and uses **TikWM API** for fetching videos.
+This project is maintained by **[FizzxxVerss](https://github.com/fizz11111)** and uses **TikWM API** for fetching videos.
 
 ## 📜 License
 This project is open-source and available under the **MIT License**.
