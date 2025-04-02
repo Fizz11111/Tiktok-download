@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TikDownloader</title>
+    <title>TikVerss Downloade</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
@@ -12,13 +12,13 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 150vh;
             background-color: #f4f4f4;
         }
         .container {
             background: white;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 40px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 90%;
@@ -61,17 +61,162 @@
             font-size: 14px;
             color: #777;
         }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .popup {
+            background: white;
+            padding: 20px;
+            border-radius: 30px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: scale(0.8);
+            transition: transform 0.3s ease-in-out;
+            text-align: center;
+        }
+        .popup img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .close-btn {
+            position: response;
+            top: 50px;
+            font-size: 18px;
+            width: 100px;
+            right: center;
+            bottom: 2px;
+            cursor: pointer;
+            background: red;
+            border: none;
+        }
+        .show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .show .popup {
+            transform: scale(1);
+        }
+        .info-box {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.info-box h3 {
+    color: #1da1f2;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+.info-box p {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+.ad-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.ad-container a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.ad-container a:hover {
+    text-decoration: underline;
+}
+
+.ad-image {
+    margin-top: 10px;
+}
+
+.ad-image img {
+    width: 95%;
+    max-width: 90%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
     </style>
 </head>
 <body>
+  <div id="popupContainer" class="overlay">
+        <div class="popup">
+            <button class="close-btn" onclick="closePopup()">&times;</button>
+            <p>Mau pasang iklan?? contact admin aja di telegram <b>@Kokociixx</b>!</p>
+            <!-- Tambahkan gambar jika ingin menggunakan popup dengan foto -->
+            <!-- <img src="profile.png" alt="Popup Image"> -->
+        </div>
+    </div>
+    
     <div class="container">
-        <h1>TikDownloader</h1>
+        <h1>TikVerss Downloader</h1>
         <input type="text" id="tiktokUrl" placeholder="Masukkan URL TikTok">
         <p class="note">Catatan: Gunakan URL lengkap video TikTok, contoh:<br> <b>https://www.tiktok.com/@username/video/1234567890123456789</b></p>
         <button onclick="fetchVideo()">Check Video</button>
         <div id="result"></div>
     </div>
+    
+    <div class="info-box">
+    <h3>Akses Tanpa Batas</h3>
+    <p>Nikmati kebebasan untuk download video TikTok sebanyak yang Anda inginkan, tanpa ada batasan.</p>
+
+    <h3>Unduh Tanpa Watermark</h3>
+    <p>Simpan video TikTok tanpa watermark dengan mudah dan cepat, pastikan setiap clip bebas dari logo TT.</p>
+
+    <h3>Cara Pemakaian</h3>
+    <p>Gunakan URL lengkap video TikTok, contoh:<br> <b>https://www.tiktok.com/@username/video/1234567890123456789</b></p>
+    <p>setelah menunggu 5 detik, video akan muncul, dan kalian bisa download videonya di titik tiga dalam video, lalu kalian download secara gratis</p>
+
+    <h3>Unduh Video TikTok Tanpa Watermark</h3>
+    <p>Di platform ini, kami menawarkan layanan gratis untuk unduh video TikTok tanpa watermark. 
+       Dapatkan video dengan resolusi HD dalam format MP4, dan ikuti petunjuk mudah kami untuk menggunakan pengunduh video.</p>
+       
+       <h3>ℹ️ Information</h3>
+       <p>Jika ada yang error atau apapun itu, silahkan <a href="https://kokocii-cs.netlify.app/report">Report di sinii!!</a> Atau <a href="https://kokocii-cs.netlify.app"> Report di sinii!!</a></p>
+       <p>*Jika form error silahkan chat ke admin!!</p>
+</div>
+
+
+    <div class="ad-container">
+    <p>ℹ️ <strong>Information:</strong> Mau pasang iklan di sini??, Chat kami di telegram kami <a href="https://t.me/Kokociixx">DI SINII!!</a>.</p>
+    <div class="ad-image">
+        <a href="https://delibomarket.olshopku.com">
+            <img src="ads.png" alt="Ads Fizzx">
+        </a>
+    </div>
+</div>
+
     <p class="credit">Create by <b>FizzxVerss</b> | Made with sigma😹</p>
+    <p class="credit">Note jika tikdownloader-nya tidak terlihat, <b>Aktifkan Mode Dekstop!!</b></p>
 
     <script>
         async function fetchVideo() {
@@ -131,6 +276,13 @@
                     }, 5000);
                 }
             });
+        }
+        function closePopup() {
+            document.getElementById("popupContainer").classList.remove("show");
+        }
+
+        window.onload = function() {
+            document.getElementById("popupContainer").classList.add("show");
         }
     </script>
 </body>
