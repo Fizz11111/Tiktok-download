@@ -220,71 +220,7 @@
     <p class="credit">Note jika tikdownloader-nya tidak terlihat, <b>Aktifkan Mode Dekstop!!</b></p>
 
     <script>
-        async function fetchVideo() {
-            const url = document.getElementById("tiktokUrl").value.trim();
-            if (!url) {
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Masukkan URL terlebih dahulu!',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-                return;
-            }
-            
-            Swal.fire({
-                title: 'Memuat Video...',
-                text: 'Harap tunggu sekitar 5 detik.',
-                icon: 'info',
-                allowOutsideClick: false,
-                showConfirmButton: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                    setTimeout(async () => {
-                        try {
-                            const response = await fetch(`https://www.tikwm.com/api/?url=${encodeURIComponent(url)}`);
-                            const data = await response.json();
-                            if (data.data && data.data.play) {
-                                document.getElementById("result").innerHTML = `
-                                    <p>Video berhasil dimuat!</p>
-                                    <video controls>
-                                        <source src="${data.data.play}" type="video/mp4">
-                                        Browser Anda tidak mendukung pemutaran video.
-                                    </video>
-                                    <br>
-                                    <a href="${data.data.play}" download>
-                                        <button class="download-btn">Download Video</button>
-                                    </a>
-                                `;
-                                document.querySelector('.download-btn').style.display = "inline-block";
-                                Swal.close();
-                            } else {
-                                Swal.fire({
-                                    title: 'Gagal!',
-                                    text: 'Pastikan URL yang dimasukkan benar.',
-                                    icon: 'error',
-                                    confirmButtonText: 'OK'
-                                });
-                            }
-                        } catch (error) {
-                            Swal.fire({
-                                title: 'Terjadi Kesalahan!',
-                                text: 'Tidak dapat mengambil data dari server.',
-                                icon: 'error',
-                                confirmButtonText: 'OK'
-                            });
-                        }
-                    }, 5000);
-                }
-            });
-        }
-        function closePopup() {
-            document.getElementById("popupContainer").classList.remove("show");
-        }
-
-        window.onload = function() {
-            document.getElementById("popupContainer").classList.add("show");
-        }
+        eval(atob("YXN5bmMgZnVuY3Rpb24gZmV0Y2hWaWRlbygpIHsKICAgICAgICAgICAgY29uc3QgdXJsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInRpa3Rva1VybCIpLnZhbHVlLnRyaW0oKTsKICAgICAgICAgICAgaWYgKCF1cmwpIHsKICAgICAgICAgICAgICAgIFN3YWwuZmlyZSh7CiAgICAgICAgICAgICAgICAgICAgdGl0bGU6ICdFcnJvciEnLAogICAgICAgICAgICAgICAgICAgIHRleHQ6ICdNYXN1a2thbiBVUkwgdGVybGViaWggZGFodWx1IScsCiAgICAgICAgICAgICAgICAgICAgaWNvbjogJ2Vycm9yJywKICAgICAgICAgICAgICAgICAgICBjb25maXJtQnV0dG9uVGV4dDogJ09LJwogICAgICAgICAgICAgICAgfSk7CiAgICAgICAgICAgICAgICByZXR1cm47CiAgICAgICAgICAgIH0KICAgICAgICAgICAgCiAgICAgICAgICAgIFN3YWwuZmlyZSh7CiAgICAgICAgICAgICAgICB0aXRsZTogJ01lbXVhdCBWaWRlby4uLicsCiAgICAgICAgICAgICAgICB0ZXh0OiAnSGFyYXAgdHVuZ2d1IHNla2l0YXIgNSBkZXRpay4nLAogICAgICAgICAgICAgICAgaWNvbjogJ2luZm8nLAogICAgICAgICAgICAgICAgYWxsb3dPdXRzaWRlQ2xpY2s6IGZhbHNlLAogICAgICAgICAgICAgICAgc2hvd0NvbmZpcm1CdXR0b246IGZhbHNlLAogICAgICAgICAgICAgICAgZGlkT3BlbjogKCkgPT4gewogICAgICAgICAgICAgICAgICAgIFN3YWwuc2hvd0xvYWRpbmcoKTsKICAgICAgICAgICAgICAgICAgICBzZXRUaW1lb3V0KGFzeW5jICgpID0+IHsKICAgICAgICAgICAgICAgICAgICAgICAgdHJ5IHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goYGh0dHBzOi8vd3d3LnRpa3dtLmNvbS9hcGkvP3VybD0ke2VuY29kZVVSSUNvbXBvbmVudCh1cmwpfWApOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmpzb24oKTsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmIChkYXRhLmRhdGEgJiYgZGF0YS5kYXRhLnBsYXkpIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgicmVzdWx0IikuaW5uZXJIVE1MID0gYAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cD5WaWRlbyBiZXJoYXNpbCBkaW11YXQhPC9wPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dmlkZW8gY29udHJvbHM+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c291cmNlIHNyYz0iJHtkYXRhLmRhdGEucGxheX0iIHR5cGU9InZpZGVvL21wNCI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBCcm93c2VyIEFuZGEgdGlkYWsgbWVuZHVrdW5nIHBlbXV0YXJhbiB2aWRlby4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC92aWRlbz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGJyPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8YSBocmVmPSIke2RhdGEuZGF0YS5wbGF5fSIgZG93bmxvYWQ+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8YnV0dG9uIGNsYXNzPSJkb3dubG9hZC1idG4iPkRvd25sb2FkIFZpZGVvPC9idXR0b24+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvYT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBgOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJy5kb3dubG9hZC1idG4nKS5zdHlsZS5kaXNwbGF5ID0gImlubGluZS1ibG9jayI7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgU3dhbC5jbG9zZSgpOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBTd2FsLmZpcmUoewogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aXRsZTogJ0dhZ2FsIScsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRleHQ6ICdQYXN0aWthbiBVUkwgeWFuZyBkaW1hc3Vra2FuIGJlbmFyLicsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGljb246ICdlcnJvcicsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbmZpcm1CdXR0b25UZXh0OiAnT0snCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfSk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIH0gY2F0Y2ggKGVycm9yKSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBTd2FsLmZpcmUoewogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRpdGxlOiAnVGVyamFkaSBLZXNhbGFoYW4hJywKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0ZXh0OiAnVGlkYWsgZGFwYXQgbWVuZ2FtYmlsIGRhdGEgZGFyaSBzZXJ2ZXIuJywKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpY29uOiAnZXJyb3InLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbmZpcm1CdXR0b25UZXh0OiAnT0snCiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9KTsKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIH0sIDUwMDApOwogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9KTsKICAgICAgICB9CiAgICAgICAgZnVuY3Rpb24gY2xvc2VQb3B1cCgpIHsKICAgICAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInBvcHVwQ29udGFpbmVyIikuY2xhc3NMaXN0LnJlbW92ZSgic2hvdyIpOwogICAgICAgIH0KCiAgICAgICAgd2luZG93Lm9ubG9hZCA9IGZ1bmN0aW9uKCkgewogICAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgicG9wdXBDb250YWluZXIiKS5jbGFzc0xpc3QuYWRkKCJzaG93Iik7CiAgICAgICAgfQ=="));
     </script>
 </body>
 </html>
